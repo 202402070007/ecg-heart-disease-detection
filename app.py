@@ -16,5 +16,11 @@ energy = st.number_input("Energy")
 
 if st.button("Predict"):
     features = np.array([[mean, std, maximum, minimum, energy]])
-    prediction = model.predict(features)
-    st.success(f"Prediction: {prediction[0]}")
+    prediction = model.predict(features)[0]
+
+    if prediction == 0:
+        result = "✅ Normal Heart (No Disease)"
+    else:
+        result = "⚠️ Heart Disease Detected"
+
+    st.success(result)
